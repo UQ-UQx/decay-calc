@@ -1,0 +1,32 @@
+<div id="calc-drag" style="border-width: 1px; border-style: solid; position: fixed; height: 440px; width: 490px; z-index: 999999; top: 10px; left: 10px; cursor: move; background-color: #d8d8d8; text-align: center; padding-top: 10px;">
+<div id="drag-handle" style="position: absolute; top: 0px; left: 0px; height: 40px; width: 490px; background-color: ##007fb8; background-image: linear-gradient(#33b2eb,#009fe6,#007fb8);">&nbsp;</div>
+<img id="hidden-logo" style="position: absolute; left: 7px; top: 7px; height: 24px; width: 54px;" alt="" src="/static/uqx-logo-white.png" />
+<div id="rad-calc-title" style="position: absolute; left: 140px; top: 10px; width: 250px; height: 36px; font-weight: bold; color: #fcfcfc; font-size: 14px; font-family: arial, sans-serif; text-align: left;">Radioactivity Decay Calculator</div>
+<div id="show-hide-button" style="position: absolute; left: 454px; top: 7px; width: 25px; height: 23px; background-color: #ffffff; cursor: default; border-style: solid; border-width: 1px; text-align: center; padding-top: 1px;">-</div>
+  <iframe id="decay-calc-frame" style="position: absolute; top: 60px; height: 450px; width: 480px; left: 10px; background-color: transparent; border: 0px none transparent; padding: 0px; overflow: hidden;" src="/static/decay-calc.html" seamless=""></iframe>
+</div>
+<div>
+  <p>
+    <script type="text/javascript">
+    $('#hidden-logo').hide();
+      $('#rad-calc-title').hide();
+      $('#show-hide-button').click(function() {
+        if ($(this).text() === '-') {
+          $(this).text('+');
+          $('#decay-calc-frame').hide();
+          $(this).parent().css('height', '30px');
+          $('#hidden-logo').show();
+          $('#rad-calc-title').show();
+        }
+        else {
+          $(this).text('-');
+          $('#decay-calc-frame').show();
+          $(this).parent().css('height', '440px');
+          $('#hidden-logo').hide();
+          $('#rad-calc-title').hide();
+        }
+      });
+      $('#calc-drag').draggable();
+    </script>
+  </p>
+</div>
