@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  <link rel="stylesheet" type="text/css" href="decay-calc.css" media="screen" title="no title">
+  <header>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="jquery.timeentry.min.js"></script>
+    <script type="text/javascript" src="date-en-au.js"></script>
+    <script type="text/javascript" src="excanvas.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="decay-calc.js"></script>
+  </header>
+  <body>
+    <div id="calculator">
+      <a id="uqx-url" href="http://uqx.uq.edu.au/" target="_blank"><img id="uqx-logo" src="uqx-logo-black.png"></img></a>
+      <div id="calculator-title">Radioactivity<br>Decay Calculator</div>
+      <div id="view-selector">
+        <div id="show-calc-button">Calc</div>
+        <div id="show-chart-button">Chart</div>
+      </div>
+      <div id="calc-container">
+        <div id="display-container">
+          <div id="display-amount"></div>
+          <div id="display-label">D<sub>2</sub> Amount</div>
+          <select id="display-units">
+            <option value="MBq">MBq</option>
+      	    <option value="uCi">&#956;Ci</option>
+          </select>
+        </div>
+        <div id="isotope-container">
+          <div id="isotope-label">Isotope</div>
+          <select id="isotope-select">
+            <option value="Select">- Select -</option>
+          </select>
+          <div id="isotope-hl-label">Half-life</div>
+          <div id="isotope-halflife">Select an isotope</div>
+        </div>
+        <div id="duration-container">
+          <div id="reference-label">Date 1 (D<sub>1</sub>)</div>
+          <div id="use-label">Date 2 (D<sub>2</sub>)</div>
+      	  <div id="duration-label">Duration</div>
+      	  <div id="duration">Specify a valid D<sub>1</sub> and D<sub>2</sub></div>
+        </div>
+        <div id="amount-container">
+      	  <div id="amount-label">D<sub>1</sub> Amount</div>
+      	  <input type="text" id="amount-input"></input>
+      	  <select id="amount-units">
+      	    <option value="MBq">MBq</option>
+      	    <option value="uCi">&#956;Ci</option>
+      	  </select>
+        </div>
+      </div>
+      <div id="chart-container">
+        <div id="plot-holder"></div>
+	    <div id="hover-info">Mouseover a point to see the radioactivity</div>
+      </div>
+    </div>
+  </body>
+</html>
