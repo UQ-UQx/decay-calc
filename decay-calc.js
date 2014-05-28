@@ -145,23 +145,6 @@ $(function() {
         calculateRadioactivity();
       }
     }).attr('readonly', true);
-
-    // Required due to buggy interaction between datepicker and selectbox.
-    /*$(document).click(function (e) {
-      var target = e.target;
-      if (!$(target).is('#reference-date-input') &&
-          !$(target).is('#ui-datepicker-div') &&
-          !$(target).is('.ui-datepicker-next') &&
-          !$(target).is('.ui-datepicker-prev')) {
-        $('#reference-date-input').datepicker('hide');
-      }
-      if (!$(target).is('#use-date-input') &&
-          !$(target).is('#ui-datepicker-div') &&
-          !$(target).is('.ui-datepicker-next') &&
-          !$(target).is('.ui-datepicker-prev')) {
-        $('#use-date-input').datepicker('hide');
-      }
-    }); */
     
     $('#use-date-input').datepicker({
       dateFormat: 'dd/mm/yy',
@@ -235,14 +218,10 @@ $(function() {
 
   function getRefDateTimeStamp() {
     if ((refDateStr !== '') && (refTimeStr !== '')) {
-      var refAUDate = Date.parse(refDateStr).toString('d/M/yyyy');
+      var refDateTime = moment(refDateStr + ' ' + refTimeStr, 'DD-MM-YYYY HH-mm').format('X');
 
-      if (refAUDate !== null) {
-        var refDateTime = Date.parse(refAUDate + ' ' + refTimeStr);
-
-        if (refDateTime !== null) {
-          return refDateTime.getTime();
-        }
+      if (refDateTime !== 'Invalid date') {
+        return refDateTime;
       }
     }
 
@@ -251,14 +230,10 @@ $(function() {
 
   function getUseDateTimeStamp() {
     if ((useDateStr !== '') && (useTimeStr !== '')) {
-      var useAUDate = Date.parse(useDateStr).toString('d/M/yyyy');
+      var useDateTime = moment(useDateStr + ' ' + useTimeStr, 'DD-MM-YYYY HH-mm').format('X');
 
-      if (useAUDate !== null) {
-        var useDateTime = Date.parse(useAUDate + ' ' + useTimeStr);
-
-        if (useDateTime !== null) {
-          return useDateTime.getTime();
-        }
+      if (useDateTime !== 'Invalid date') {
+        return useDateTime;
       }
     }
 
@@ -267,8 +242,8 @@ $(function() {
 
   function calculateDuration() {
     if (refDateTimeStamp !== 0 && useDateTimeStamp !== 0) {
-      durationMin = ((useDateTimeStamp - refDateTimeStamp) / 60000);
-      durationHr = ((useDateTimeStamp - refDateTimeStamp) / 3600000);
+      durationMin = ((useDateTimeStamp - refDateTimeStamp) / 60);
+      durationHr = ((useDateTimeStamp - refDateTimeStamp) / 3600);
 
       $('#duration').html(roundTwoDec(durationHr) + ' h<br><br>' + roundTwoDec(durationMin) + ' min');
     }
